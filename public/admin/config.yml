@@ -1,14 +1,16 @@
 backend:
   name: github
-  repo: natnoppol/musikkenforandring-testing  # Replace with your GitHub repo
+  repo: natnoppol/musikkenforandring-testing  # เปลี่ยนเป็น repository ของ GitHub ของคุณ
   branch: main
-  local_backend: true  # Enables local mode
+  identity_url: "https://lively-horse-38ccca.netlify.app/"
+  api_url: "https://api.netlify.com"  # URL ของ Netlify API (ใช้ค่าเดิมถ้าใช้การโฮสต์บน Netlify)
+  local_backend: true  # เปิดใช้งานโหมดท้องถิ่น
 
-media_folder: "public/uploads"  # Adjust based on your project
+media_folder: "public/uploads"  # ปรับตามโปรเจกต์ของคุณ
 public_folder: "/uploads"
 
 collections:
-  # Blog Post Collection
+  # คอลเล็กชันบล็อกโพสต์
   - name: "blog_posts"
     label: "Blog Posts"
     folder: "src/content/blog_posts"
@@ -20,13 +22,17 @@ collections:
       - { name: "image", label: "Featured Image", widget: "image" }
       - { name: "body", label: "Body Content", widget: "markdown" }
       - { name: "categories", label: "Categories", widget: "list", fields: [{ name: "category", label: "Category", widget: "string" }] }
-      - { name: "metadata", label: "Metadata", widget: "object", fields: [
-          { name: "meta_title", label: "Meta Title", widget: "string" },
-          { name: "meta_description", label: "Meta Description", widget: "string" }
-        ]
-      }
+      - { 
+          name: "metadata", 
+          label: "Metadata", 
+          widget: "object", 
+          fields: [
+            { name: "meta_title", label: "Meta Title", widget: "string" },
+            { name: "meta_description", label: "Meta Description", widget: "string" }
+          ] 
+        }
 
-  # Pages Collection
+  # คอลเล็กชันหน้า
   - name: "pages"
     label: "Pages"
     folder: "src/content/pages"
@@ -37,13 +43,17 @@ collections:
       - { name: "slug", label: "Slug", widget: "string" }
       - { name: "body", label: "Body Content", widget: "markdown" }
       - { name: "image", label: "Page Image", widget: "image" }
-      - { name: "metadata", label: "Metadata", widget: "object", fields: [
-          { name: "meta_title", label: "Meta Title", widget: "string" },
-          { name: "meta_description", label: "Meta Description", widget: "string" }
-        ]
-      }
+      - { 
+          name: "metadata", 
+          label: "Metadata", 
+          widget: "object", 
+          fields: [
+            { name: "meta_title", label: "Meta Title", widget: "string" },
+            { name: "meta_description", label: "Meta Description", widget: "string" }
+          ] 
+        }
 
-  # Media Collection (for images, videos, and other media)
+  # คอลเล็กชันสื่อ (สำหรับภาพ, วิดีโอ, และสื่ออื่น ๆ)
   - name: "media"
     label: "Media"
     folder: "src/content/media"
