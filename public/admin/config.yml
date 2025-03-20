@@ -1,16 +1,57 @@
 backend:
-  name: git-gateway
-  branch: main  # Change to your main branch name
+  name: github
+  repo: natnoppol/musikkenforandring-testing  # Replace with your GitHub repo
+  branch: main
+  local_backend: true  # Enables local mode
 
+media_folder: "public/uploads"  # Adjust based on your project
+public_folder: "/uploads"
 
 collections:
-  - name: "products"
-    label: "Products"
-    folder: "src/content/products"
+  # Blog Post Collection
+  - name: "blog_posts"
+    label: "Blog Posts"
+    folder: "src/content/blog_posts"
     create: true
     slug: "{{slug}}"
     fields:
       - { name: "title", label: "Title", widget: "string" }
-      - { name: "price", label: "Price", widget: "number" }
-      - { name: "image", label: "Image", widget: "image" }
-      - { name: "description", label: "Description", widget: "markdown" }
+      - { name: "date", label: "Date", widget: "datetime" }
+      - { name: "image", label: "Featured Image", widget: "image" }
+      - { name: "body", label: "Body Content", widget: "markdown" }
+      - { name: "categories", label: "Categories", widget: "list", fields: [{ name: "category", label: "Category", widget: "string" }] }
+      - { name: "metadata", label: "Metadata", widget: "object", fields: [
+          { name: "meta_title", label: "Meta Title", widget: "string" },
+          { name: "meta_description", label: "Meta Description", widget: "string" }
+        ]
+      }
+
+  # Pages Collection
+  - name: "pages"
+    label: "Pages"
+    folder: "src/content/pages"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: "title", label: "Title", widget: "string" }
+      - { name: "slug", label: "Slug", widget: "string" }
+      - { name: "body", label: "Body Content", widget: "markdown" }
+      - { name: "image", label: "Page Image", widget: "image" }
+      - { name: "metadata", label: "Metadata", widget: "object", fields: [
+          { name: "meta_title", label: "Meta Title", widget: "string" },
+          { name: "meta_description", label: "Meta Description", widget: "string" }
+        ]
+      }
+
+  # Media Collection (for images, videos, and other media)
+  - name: "media"
+    label: "Media"
+    folder: "src/content/media"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: "title", label: "Title", widget: "string" }
+      - { name: "media_file", label: "Media File", widget: "file" }
+      - { name: "media_type", label: "Media Type", widget: "select", options: ["image", "video", "audio", "document"] }
+      - { name: "description", label: "Description", widget: "text" }
+      - { name: "categories", label: "Categories", widget: "list", fields: [{ name: "category", label: "Category", widget: "string" }] }
